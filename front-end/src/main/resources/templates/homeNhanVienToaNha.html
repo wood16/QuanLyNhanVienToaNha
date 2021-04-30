@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Quản lý nhân viên tòa nhà</title>
+	<style>
+	table, th, td {
+	  border: 1px solid black;
+	}
+	div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.danhsach {
+	background-color: #FDFEFE;
+}
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+button{
+	width: 80px;
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 5px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+}
+
+#btntm{
+	position: absolute;
+	top : 110px;
+	right : 10px;
+}
+
+#btntmnv{
+	width: 180px;
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 20px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+}
+#btntmnv:hover{
+	background-color: #45a049;
+}
+#btntk{
+	width: 100px;
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 12px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+}
+
+#btntk:hover{
+	background-color: #45a049;
+}
+button:hover{
+	background-color: #45a049;
+}
+
+#timkiem{
+  width: 350px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+	</style>
+</head>
+<body>
+
+	<h1>Quản lý Nhân viên tòa nhà</h1>
+	<div>
+		
+			<h2>Tìm kiếm nhân viên tòa nhà</h2>
+		
+				<form method="GET" action="/nhanvientoanha/search">
+				<label>Tên:</label>
+			    <th><input name="tennhanvien" type="text" id="timkiem" /></th>
+			    
+					<button id="btntk">Tìm kiếm</button>
+			  	
+			  	</form>
+		
+		<div id="btntm">
+			
+			<form method="GET" action="/nhanvientoanha/add">
+				<button id="btntmnv">Thêm mới nhân viên</button>
+			</form>
+			
+		</div>	
+	</div>
+	<div class="danhsach">
+		<h2>Danh sách nhân viên tòa nhà</h2>
+	
+	<table id="customers">
+		<tr>
+			<th>Id</th>
+		    <th>Tên</th>
+		    <th>Ngày sinh</th>
+		    <th>SĐT</th>
+		    <th>Địa chỉ</th>
+		    <th>Dịch vụ</th>
+		    <th>Vị trí</th>
+		    <th>Bậc</th>
+		    <th>Chi tiết</th>
+		</tr>
+		<tr th:each="nhanvien : ${dsnhanvien}">
+		    <td th:text="${nhanvien.id}"></td>
+		    <td th:text="${nhanvien.ten}"></td>
+		    <td th:text="${nhanvien.ngaysinh}"></td>
+		    <td th:text="${nhanvien.sdt}"></td>
+		    <td th:text="${nhanvien.diachi}"></td>
+		    <td th:text="${nhanvien.dichvu.tenDv}"></td>
+		    <td th:text="${nhanvien.vitri.tenvt}"></td>
+		    <td th:text="${nhanvien.bac.hesobac}"></td>
+		    
+		    <td>
+		    	<form method="GET" action="/nhanvientoanha/get">
+			    	<input name="idnhanvien" type="hidden" th:value="${nhanvien.id}" /> 
+			    	<button>XEM</button>
+			  	</form>
+		    </td>
+		    
+		</tr>
+	</table>
+	</div>
+	
+	
+</body>
+</html>

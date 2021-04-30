@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Chỉnh sửa thông tin nhân viên </title>
+<style type="text/css">
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=date] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+button{
+	width: 100%;
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+}
+button:hover{
+	background-color: #45a049;
+}
+</style>
+</head>
+<body>
+<h2>Thông tin nhân viên tòa nhà</h2>
+<div>
+	<form method="POST" action="/nhanvientoanha/update">
+		<table th:object="${nhanvien}">
+			<input type="hidden" name="id" th:value= "*{id}" >
+			<tr>
+				<td>Tên</td>
+				<td><input type="text" name="ten" th:value= "*{ten}" required></td>
+			</tr>
+			<tr>
+				<td>Ngày sinh</td>
+				<td><input type="date" name="ngaysinh" th:value= "${ngaysinh}" required></td>
+			</tr>
+			<tr>
+				<td>SĐT</td>
+				<td><input type="text" name="sdt" th:value="*{sdt}" required></td>
+			</tr>
+			<tr>
+				<td>Địa chỉ</td>
+				<td><input type="text" name="diachi" th:value="*{diachi}" required></td>
+			</tr>
+			<tr>
+				<td>Dịch vụ</td>
+				<td>
+					<select name="dichvu">
+						<div th:each="dichvu : ${dsdichvu}">
+						    <option th:value="${dichvu.dichVuId}"><span th:text="${dichvu.tenDv}"></span></option>
+						</div>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Vị trí</td>
+				<td>
+					<select name="vitri">
+						<div th:each="vitri : ${dsvitri}">
+						    <option th:value="${vitri.id}" ><span th:text="${vitri.tenvt}"></span></option>
+						</div>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Bậc</td>
+				<td>
+					<select name="bac">
+						<div th:each="bac : ${dsbac}">
+						    <option th:value="${bac.id}"><span th:text="${bac.hesobac}"></span></option>
+						</div>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				
+				
+				<td><input type="submit" value="Cập nhật thông tin"></td>
+				<td>
+				
+				</td>
+			</tr>
+		</table>	
+	</form>
+	<form action="/nhanvientoanha/delete" method="get">
+		<table>
+			<tr>
+				<td>
+					<input type="hidden" name="idXoa" th:value= "${nhanvien.id}" >
+					<button>Xóa</button>
+				</td>
+				<td></td>
+			</tr>
+				
+		</table>	
+	</form>
+	<form action="/nhanvientoanha" method="get">
+			<table>
+			<tr>
+				<td><input type="submit" value="Quay Lại"></td>
+				<td></td>
+			</tr>
+				
+		</table>	
+	</form>
+	</div>
+</body>
+</html>

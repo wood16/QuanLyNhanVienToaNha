@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Thêm mới thành công</title>
+<style type="text/css">
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+input[type=submit] {
+  width: 100px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+</style>
+</head>
+<body>
+<h2>Thêm thành công</h2>
+<div>
+	<table th:object="${nhanvientoanha}">
+			<tr>
+				<td>Tên:</td>
+				<td th:text= "*{ten}" ></td>
+			</tr>
+			<tr>
+				<td>Ngày sinh:</td>
+				<td th:text="*{ngaysinh}" ></td>
+			</tr>
+			<tr>
+				<td>SĐT:</td>
+				<td th:text="*{sdt}" ></td>
+			</tr>
+			<tr>
+				<td>Địa chỉ:</td>
+				<td th:text="*{diachi}" ></td>
+			</tr>
+			<tr>
+				<td>Dịch vụ:</td>
+				<td th:text="*{dichvu.tenDv}"></td>
+			</tr>
+			<tr>
+				<td>Vị trí:</td>
+				<td th:text="*{vitri.tenvt}"></td>
+			</tr>
+			<tr>
+				<td>Bậc:</td>
+				<td th:text="*{bac.hesobac}"></td>
+			</tr>
+		</table>
+		<form action="/nhanvientoanha" method="get">
+	 			<input type="submit" value="Quay Lại">
+	 	</form>
+	 	</div>
+</body>
+</html>
